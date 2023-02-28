@@ -1,8 +1,9 @@
-
-import React from 'react';
+import React from "react";
+import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 import hazelPic from "../images/hazel.jpg";
 import tubbyPic from "../images/tubby.jpg";
 import whiskeyPic from "../images/whiskey.jpg";
+import Dogs from "./Dogs";
 
 // Helper data for all the dogs, as if we got them from a database or API
 const dogs = [
@@ -44,10 +45,19 @@ const dogs = [
 function App() {
   return (
     <div className="App">
-      <h1>My React App</h1>
+      <NavLink to={'/'}>
+      <h1>Helloz. We have dogz. Click on them for more info.</h1>
+
+      </NavLink>
+
+      <Routes>
+        <Route path="/dogs" element={<Dogs dogs={dogs} />} />
+        <Route path="/dogs/:name" element={<Dogs dogs={dogs} />} />
+        <Route path="*" element={<Navigate to='dogs' />} />
+
+      </Routes>
     </div>
   );
 }
-
 
 export default App;
